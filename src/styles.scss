@@ -1,0 +1,40 @@
+$primary-violet: #7c5dfa;
+$secondary-violet: #9277ff;
+
+$primary-black: #0c0e16;
+$secondary-black: #1e2139;
+$tertiary-black: #252945;
+
+$primary-gray: #7e88c3;
+$secondary-gray: #888eb0;
+$tertiary-gray: #dfe3fa;
+
+$primary-white: #f8f8fb;
+
+$primary-red: #ec5757;
+$secondary-red: #ff9797;
+
+@font-face {
+  font-family: "SpartanBold";
+  src: url("assets/fonts/Spartan-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SpartanMedium";
+  src: url("assets/fonts/Spartan-Medium.ttf") format("truetype");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "SpartanBold", sans-serif;
+  font-optical-sizing: auto;
+}
+
+body {
+  font-family: "SpartanMedium", sans-serif;
+  font-optical-sizing: auto;
+}
