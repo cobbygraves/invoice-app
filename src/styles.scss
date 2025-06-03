@@ -34,7 +34,14 @@ h6 {
   font-optical-sizing: auto;
 }
 
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "SpartanMedium", sans-serif;
   font-optical-sizing: auto;
+  background-color: $primary-white;
 }

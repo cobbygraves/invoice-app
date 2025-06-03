@@ -1,0 +1,84 @@
+@import "../../styles.scss";
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+
+  .id-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .invoice-number {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .invoice-number::first-letter {
+    color: $secondary-gray;
+  }
+
+  .name {
+    font-size: 14px;
+    color: $secondary-gray;
+  }
+
+  .due-date-container {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .due-date {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-top: 10px;
+  }
+
+  .amount {
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .status-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .status {
+    font-size: 12px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    min-width: 75px;
+
+    &.paid {
+      background-color: #e0ffe0;
+      color: #00c853;
+      font-weight: 600;
+    }
+
+    &.pending {
+      background-color: #fff8ed;
+      color: #f8a63b;
+      font-weight: 600;
+    }
+
+    &.draft {
+      background-color: $tertiary-gray;
+      color: $secondary-black;
+      font-weight: 600;
+    }
+  }
+}
