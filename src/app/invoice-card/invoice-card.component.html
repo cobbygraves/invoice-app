@@ -9,7 +9,7 @@
       <div class="amount">&#163;{{ invoice.total }}</div>
     </div>
     @if(invoice.status==='paid'){
-    <p class="status paid">Paid</p>
+    <div class="status paid">Paid</div>
     } @else if (invoice.status==='pending') {
     <div class="status pending">Pending</div>
     } @else {

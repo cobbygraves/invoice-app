@@ -1,4 +1,4 @@
-@import "../../styles.scss";
+@use '../../styles/_mixin_default' as root;
 
 .card {
   background-color: white;
@@ -20,12 +20,12 @@
   }
 
   .invoice-number::first-letter {
-    color: $secondary-gray;
+    color: root.$secondary-gray;
   }
 
   .name {
     font-size: 14px;
-    color: $secondary-gray;
+    color: root.$secondary-gray;
   }
 
   .due-date-container {
@@ -76,9 +76,17 @@
     }
 
     &.draft {
-      background-color: $tertiary-gray;
-      color: $secondary-black;
+      background-color: root.$tertiary-gray;
+      color: root.$secondary-black;
       font-weight: 600;
     }
+
+    .paid:first-child {
+     width: 45px;
+     height: 45px;
+     border-radius: 50%;
+     background-color: #00c853;
+    }
+
   }
 }

@@ -1,4 +1,4 @@
-@import "../../styles.scss";
+@use "../../styles/_mixin_default" as root;
 
 .header {
   position: sticky;
@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   height: 72px;
-  background-color: $secondary-black;
+  background-color: root.$secondary-black;
 
   .header-logo {
     height: inherit;

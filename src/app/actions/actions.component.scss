@@ -1,17 +1,17 @@
-@import "../../styles.scss";
+@use "../../styles/_mixin_default" as root;
 
 .action-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  margin-top: 20px;
+ 
 }
 
 .left-action {
   p {
     font-size: x-small;
-    color: $secondary-gray;
+    color: root.$secondary-gray;
   }
 }
 
@@ -44,7 +44,7 @@
     border: none;
     padding: 5px;
     border-radius: 20px;
-    background-color: $primary-violet;
+    background-color: root.$primary-violet;
 
     img {
       width: 20px;

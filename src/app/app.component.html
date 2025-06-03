@@ -1,9 +1,4 @@
 <app-header></app-header>
-<app-actions></app-actions>
 <main>
-  @if(invoices.length>0){ @for (invoiceItem of invoices; track invoiceItem.id) {
-  <app-invoice-card [invoice]="invoiceItem"></app-invoice-card>
-  } } @else {
-  <app-no-invoice></app-no-invoice>
-  }
+<router-outlet />
 </main>

@@ -1,18 +1,20 @@
-$primary-violet: #7c5dfa;
-$secondary-violet: #9277ff;
+// $primary-violet: #7c5dfa;
+// $secondary-violet: #9277ff;
 
-$primary-black: #0c0e16;
-$secondary-black: #1e2139;
-$tertiary-black: #252945;
+// $primary-black: #0c0e16;
+// $secondary-black: #1e2139;
+// $tertiary-black: #252945;
 
-$primary-gray: #7e88c3;
-$secondary-gray: #888eb0;
-$tertiary-gray: #dfe3fa;
+// $primary-gray: #7e88c3;
+// $secondary-gray: #888eb0;
+// $tertiary-gray: #dfe3fa;
 
-$primary-white: #f8f8fb;
+// $primary-white: #f8f8fb;
 
-$primary-red: #ec5757;
-$secondary-red: #ff9797;
+// $primary-red: #ec5757;
+// $secondary-red: #ff9797;
+@use "./styles/_mixin_default" as root;
+
 
 @font-face {
   font-family: "SpartanBold";
@@ -43,5 +45,5 @@ h6 {
 body {
   font-family: "SpartanMedium", sans-serif;
   font-optical-sizing: auto;
-  background-color: $primary-white;
+  background-color: root.$primary-white;
 }

@@ -1,4 +1,4 @@
-@import "../../styles.scss";
+@use '../../styles/_mixin_default' as root;
 
 .no-invoice-container{
   display: flex;
@@ -10,7 +10,7 @@
 
   p{
     font-size: x-small;
-    color: $secondary-gray;
+    color: root.$secondary-gray;
     width: 65%;
     text-align: center;
   }
