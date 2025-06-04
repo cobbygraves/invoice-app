@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
- 
+
 }
 
 .left-action {
@@ -22,6 +22,7 @@
   select {
     background-color: white;
     padding: 5px;
+    cursor: pointer;
     border: none;
     font-size: x-small;
     font-weight: 600;
@@ -40,8 +41,11 @@
   button {
     display: flex;
     align-items: center;
+    justify-content: center;
+    cursor: pointer;
     gap: 7px;
     border: none;
+    width: 75px;
     padding: 5px;
     border-radius: 20px;
     background-color: root.$primary-violet;

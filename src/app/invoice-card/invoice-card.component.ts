@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Invoice } from '../../types/types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-card',
@@ -10,4 +11,11 @@ import { Invoice } from '../../types/types';
 export class InvoiceCardComponent {
 @Input()
 invoice!:Invoice
+
+  constructor(private router: Router) {}
+
+showDetails(id: string) {
+  console.log('Card clicked:', id);
+  this.router.navigate(['/invoice', this.invoice.id]);
+}
 }
