@@ -1,0 +1,17 @@
+@use '../../styles/_mixin_default' as root;
+
+.no-invoice-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+
+  p{
+    font-size: x-small;
+    color: root.$secondary-gray;
+    width: 65%;
+    text-align: center;
+  }
+}
