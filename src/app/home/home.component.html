@@ -1,5 +1,4 @@
-
-<div>
+<div class="main">
   <app-actions></app-actions>
   @if(invoices.length>0){ @for (invoiceItem of invoices; track invoiceItem.id) {
   <app-invoice-card [invoice]="invoiceItem"></app-invoice-card>

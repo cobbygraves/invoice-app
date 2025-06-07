@@ -1,4 +1,4 @@
-<div>
+<div class="main">
   <a (click)="goBack()">
     <svg
       width="6"
@@ -28,7 +28,9 @@
 
   <div class="invoice-container">
     <header class="invoice-type">
-      <h5>{{ invoice.id }}</h5>
+      <h5>
+        <span>#</span><span>{{ invoice.id }}</span>
+      </h5>
       <p>{{ invoice.description }}</p>
     </header>
 
@@ -82,10 +84,9 @@
       </div>
     </div>
   </div>
-
-  <div class="invoice-footer">
-    <div class="edit">Edit</div>
-    <button class="delete">Delete</button>
-    <button class="mark-as-paid">Mark as Paid</button>
-  </div>
+</div>
+<div class="invoice-footer">
+  <a [routerLink]="['/invoice/', invoice.id, 'edit']" class="edit">Edit</a>
+  <button class="delete">Delete</button>
+  <button class="mark-as-paid">Mark as Paid</button>
 </div>

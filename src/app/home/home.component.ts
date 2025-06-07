@@ -4,7 +4,7 @@ import { InvoiceCardComponent } from '../invoice-card/invoice-card.component';
 import { ActionsComponent } from '../actions/actions.component';
 import { NoInvoiceComponent } from '../no-invoice/no-invoice.component';
 import moment from 'moment';
-import { Invoice } from '../../types/types';
+import { Invoice } from '../models/invoice';
 
 @Component({
   selector: 'app-home',

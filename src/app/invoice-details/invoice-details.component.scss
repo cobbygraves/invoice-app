@@ -1,5 +1,9 @@
 @use "../../styles/_mixin_default" as root;
 
+.main {
+  padding: 0 10px;
+}
+
 a {
   display: flex;
   align-items: center;
@@ -67,7 +71,7 @@ a {
   }
 
   .invoice-type h5::first-letter {
-    color: root.$secondary-gray;
+    color: root.$tertiary-gray;
   }
 
   p {
@@ -210,6 +214,8 @@ a {
     background-color: transparent;
     font-weight: 600;
     font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
   }
   button.delete {
     color: white;
@@ -218,13 +224,15 @@ a {
     padding: 10px 20px;
     border-radius: 50px;
     font-size: 13px;
+    cursor: pointer;
   }
   button.mark-as-paid {
-      color: white;
+    color: white;
     background-color: root.$primary-violet;
     border: none;
     padding: 10px 20px;
     border-radius: 50px;
     font-size: 13px;
+    cursor: pointer;
   }
 }

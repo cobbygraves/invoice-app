@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Invoice } from '../../types/types';
+import { Invoice } from '../models/invoice';
 import Invoices from '../../assets/data.json';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-details',
+  imports:[RouterModule],
   templateUrl: './invoice-details.component.html',
   styleUrl: './invoice-details.component.scss',
 })
