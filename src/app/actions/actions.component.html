@@ -1,7 +1,10 @@
 <section class="action-container">
   <div class="left-action">
     <h4>Invoices</h4>
-    <p>7 invoices</p>
+    <p>
+      <span>{{ numberOfInvoices }}</span
+      ><span>invoices</span>
+    </p>
   </div>
   <div class="right-action">
     <select>
@@ -10,6 +13,8 @@
       <option value="paid">Paid</option>
       <option value="draft">Draft</option>
     </select>
-    <button><img src="add-invoice.png"/><span>New</span></button>
+    <a [routerLink]="['new-invoice']"
+      ><img src="add-invoice.png" /><span>New</span></a
+    >
   </div>
 </section>

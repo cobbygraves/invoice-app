@@ -85,8 +85,32 @@
     </div>
   </div>
 </div>
-<div class="invoice-footer">
+<!-- <div class="invoice-footer">
   <a [routerLink]="['/invoice/', invoice.id, 'edit']" class="edit">Edit</a>
   <button class="delete">Delete</button>
   <button class="mark-as-paid">Mark as Paid</button>
+</div> -->
+
+<!-- ...existing code... -->
+<div class="invoice-footer">
+  <a [routerLink]="['/invoice/', invoice.id, 'edit']" class="edit">Edit</a>
+  <button class="delete" (click)="showDeleteModal = true">Delete</button>
+  <button class="mark-as-paid">Mark as Paid</button>
 </div>
+
+<!-- Modal Overlay -->
+@if (showDeleteModal) {
+<div class="modal-overlay">
+  <div class="modal">
+    <h2>Confirm Deletion</h2>
+    <small>
+      Are you sure you want to delete invoice #{{ invoice.id }}? This action
+      cannot be undone.
+    </small>
+    <div class="modal-actions">
+      <button class="cancel" (click)="showDeleteModal = false">Cancel</button>
+      <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
+    </div>
+  </div>
+</div>
+}

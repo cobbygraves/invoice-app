@@ -1,0 +1,151 @@
+@use "../../styles/_mixin_default" as root;
+
+.main {
+  padding: 0 10px;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.edit-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-weight: 800;
+
+  .hash {
+    color: root.$secondary-gray;
+  }
+}
+
+.sub-title {
+  color: root.$primary-violet;
+  font-size: x-small;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.item-total {
+  padding: 13px 7px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: smaller;
+  margin-top: 7px;
+  color: root.$primary-gray;
+}
+
+.delete-item {
+  margin-top: 25px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+label {
+  font-size: x-small;
+  color: root.$secondary-gray;
+}
+
+input {
+  border: 1px solid root.$tertiary-gray;
+  padding: 13px 7px;
+  border-radius: 5px;
+}
+
+select {
+  border: 1px solid root.$tertiary-gray;
+  padding: 13px 7px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.city-postal-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.invoice-footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  button.discard {
+    color: root.$secondary-gray;
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+  }
+  button.draft {
+    color: root.$secondary-gray;
+    background-color: root.$secondary-black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  button.save-and-send {
+    color: white;
+    background-color: root.$primary-violet;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+}
+
+.list-items-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: root.$primary-gray;
+}
+
+.control-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  gap: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.add-item {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  color: root.$secondary-gray;
+  border: none;
+  cursor: pointer;
+  background-color: root.$tertiary-gray;
+  font-weight: 500;
+}

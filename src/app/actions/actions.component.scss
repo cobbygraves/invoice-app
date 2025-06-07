@@ -5,11 +5,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-
 }
 
 .left-action {
   p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     font-size: x-small;
     color: root.$secondary-gray;
   }
@@ -38,7 +40,7 @@
     }
   }
 
-  button {
+  a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,6 +50,7 @@
     width: 75px;
     padding: 5px;
     border-radius: 20px;
+    text-decoration: none;
     background-color: root.$primary-violet;
 
     img {

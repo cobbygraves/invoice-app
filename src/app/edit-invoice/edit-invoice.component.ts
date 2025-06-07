@@ -86,8 +86,6 @@ export class EditInvoiceComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this?.editForm?.value?.listItems);
-
     const editedData = {
       id: this?.invoiceId,
       createdAt: this?.invoice?.createdAt,
@@ -126,7 +124,7 @@ export class EditInvoiceComponent implements OnInit {
       // Update existing invoice
       Invoices[index] = editedData;
     } else {
-      // Add as new invoice
+      // Add as edited invoice
       Invoices.push(editedData);
     }
     this.router.navigate(['/']);
