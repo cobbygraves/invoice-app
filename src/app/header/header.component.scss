@@ -28,4 +28,8 @@
       border-radius: 50%;
     }
   }
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
 }

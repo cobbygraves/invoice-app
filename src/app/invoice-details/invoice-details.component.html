@@ -18,11 +18,23 @@
   <div class="status-bar">
     <p class="status-text">Status</p>
     @if(invoice.status==='paid'){
-    <div class="paid">Paid</div>
+    <div class="paid-status-indicator">
+      <div class="paid-circle"></div>
+      <div class="status paid">Paid</div>
+    </div>
+
     } @else if (invoice.status==='pending') {
-    <div class="pending">Pending</div>
+    <div class="pending-status-indicator">
+      <div class="pending-circle"></div>
+      <div class="status pending">Pending</div>
+    </div>
+
     } @else {
-    <div class="draft">Draft</div>
+    <div class="draft-status-indicator">
+      <div class="draft-circle"></div>
+      <div class="status draft">Draft</div>
+    </div>
+
     }
   </div>
 

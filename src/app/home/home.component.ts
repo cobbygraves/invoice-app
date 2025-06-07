@@ -8,17 +8,13 @@ import { Invoice } from '../models/invoice';
 
 @Component({
   selector: 'app-home',
-  imports: [
-        ActionsComponent,
-        NoInvoiceComponent,
-        InvoiceCardComponent,
-  ],
+  imports: [ActionsComponent, NoInvoiceComponent, InvoiceCardComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   title = 'invoice';
-  invoices: Invoice[] = Invoices.map((item) => ({
+  invoices: Invoice[] = Invoices.map((item: Invoice) => ({
     ...item,
     paymentDue: moment(item.paymentDue).format('D MMM YYYY'),
   }));

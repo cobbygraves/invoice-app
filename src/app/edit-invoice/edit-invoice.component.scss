@@ -2,6 +2,10 @@
 
 .main {
   padding: 0 10px;
+
+  @media (min-width: 1024px) {
+    padding: 0 20rem;
+  }
 }
 
 a {
@@ -89,6 +93,10 @@ select {
   margin-top: 20px;
   padding: 0 20px;
   font-weight: 800;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
 
   .cancel {
     background-color: transparent;

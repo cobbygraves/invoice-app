@@ -1,6 +1,8 @@
 <div class="card" (click)="showDetails(invoice.id)">
   <div class="id-name">
-    <div class="invoice-number"><span>#</span><span>{{ invoice.id }}</span></div>
+    <div class="invoice-number">
+      <span>#</span><span>{{ invoice.id }}</span>
+    </div>
     <div class="name">{{ invoice.clientName }}</div>
   </div>
   <div class="due-date-container">
@@ -9,11 +11,23 @@
       <div class="amount">&#163;{{ invoice.total }}</div>
     </div>
     @if(invoice.status==='paid'){
-    <div class="status paid">Paid</div>
+    <div class="paid-status-indicator">
+      <div class="paid-circle"></div>
+      <div class="status paid">Paid</div>
+    </div>
+
     } @else if (invoice.status==='pending') {
-    <div class="status pending">Pending</div>
+    <div class="pending-status-indicator">
+      <div class="pending-circle"></div>
+      <div class="status pending">Pending</div>
+    </div>
+
     } @else {
-    <div class="status draft">Draft</div>
+    <div class="draft-status-indicator">
+      <div class="draft-circle"></div>
+      <div class="status draft">Draft</div>
+    </div>
+
     }
   </div>
 </div>

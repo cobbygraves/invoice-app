@@ -3,7 +3,8 @@ import { Location } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../models/invoice';
-import Invoices from '../../assets/data.json';
+import InvoicesData from '../../assets/data.json';
+const Invoices: Invoice[] = InvoicesData as Invoice[];
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -35,6 +36,6 @@ export class InvoiceDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.invoiceId = this.route.snapshot.paramMap.get('id') || '';
-    this.invoice = Invoices.find((invoice) => invoice.id === this.invoiceId)!;
+    this.invoice = Invoices.find((invoice) => invoice?.id === this.invoiceId)!;
   }
 }

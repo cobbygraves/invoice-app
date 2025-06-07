@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
   padding: 0 10px;
 }
 
@@ -28,7 +29,7 @@
     border: none;
     font-size: x-small;
     font-weight: 600;
-    padding-right: 10px; // Reduce this value to bring text closer to the icon
+    padding-right: 25px; // Reduce this value to bring text closer to the icon
     appearance: none; // Removes default arrow for custom styling
     background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;

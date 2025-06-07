@@ -3,7 +3,8 @@ import { CommonModule, Location } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../models/invoice';
-import Invoices from '../../assets/data.json';
+import InvoicesData from '../../assets/data.json';
+const Invoices: Invoice[] = InvoicesData as Invoice[];
 import {
   FormArray,
   FormBuilder,
@@ -118,7 +119,9 @@ export class EditInvoiceComponent implements OnInit {
     };
     // console.log(editedDAta);
     // Find the index of the invoice to update
-    const index = Invoices.findIndex((inv) => inv.id === editedData.id);
+    const index = Invoices.findIndex(
+      (inv: Invoice) => inv?.id === editedData.id
+    );
 
     if (index !== -1) {
       // Update existing invoice

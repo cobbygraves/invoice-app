@@ -2,6 +2,9 @@
 
 .main {
   padding: 0 10px;
+  @media (min-width: 1024px) {
+    padding: 0 20rem;
+  }
 }
 
 a {
@@ -9,6 +12,24 @@ a {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+}
+
+.status {
+  &.paid {
+    color: #00c853;
+    font-weight: 600;
+  }
+
+  &.pending {
+    color: #f8a63b;
+    font-weight: 600;
+  }
+
+  &.draft {
+    background-color: root.$tertiary-gray;
+    color: root.$secondary-black;
+    font-weight: 600;
+  }
 }
 
 .status-bar {
@@ -22,34 +43,64 @@ a {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: 75px;
 
-  .paid {
+  .paid-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     background-color: #e0ffe0;
-    color: #00c853;
-    font-weight: 600;
-    padding: 10px;
+    font-size: 12px;
+    color: #fff;
     border-radius: 5px;
-    min-width: 85px;
-    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    min-width: 75px;
+
+    .paid-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #00c853;
+    }
   }
 
-  .pending {
+  .pending-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     background-color: #fff8ed;
-    color: #f8a63b;
-    font-weight: 600;
-    padding: 10px;
+    font-size: 12px;
+    color: #fff;
     border-radius: 5px;
-    min-width: 85px;
-    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    min-width: 75px;
+
+    .pending-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #f8a63b;
+    }
   }
 
-  .draft {
+  .draft-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     background-color: root.$tertiary-gray;
+    font-size: 12px;
     color: root.$secondary-black;
-    font-weight: 600;
-    padding: 10px;
     border-radius: 5px;
-    min-width: 85px;
-    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    min-width: 75px;
+
+    .draft-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: root.$secondary-black;
+    }
   }
 }
 
@@ -208,6 +259,10 @@ a {
   padding-right: 20px;
   margin-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
 
   .edit {
     color: root.$secondary-gray;
