@@ -67,6 +67,17 @@ export class HomeComponent {
     this.showNewInvoiceModal = true;
   }
 
+  handleInvoiceFilter(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const filterValue = target.value.toLowerCase();
+    this.invoices = Invoices.filter(
+      (invoice: Invoice) => invoice.status === filterValue
+    ).map((item: Invoice) => ({
+      ...item,
+      paymentDue: moment(item.paymentDue).format('D MMM YYYY'),
+    }));
+  }
+
   closeNewInvoiceModal() {
     this.showNewInvoiceModal = false;
     this.editForm.reset();

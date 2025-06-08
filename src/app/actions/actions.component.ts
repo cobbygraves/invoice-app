@@ -21,8 +21,13 @@ export class ActionsComponent implements OnInit {
   }
 
   @Output() desktopNew = new EventEmitter<void>();
+  @Output() filterInvoices = new EventEmitter<Event>();
 
   onDesktopNewClick() {
     this.desktopNew.emit();
+  }
+
+  onFilterInvoices(event: Event) {
+    this.filterInvoices.emit(event);
   }
 }

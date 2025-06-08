@@ -7,7 +7,7 @@
     </p>
   </div>
   <div class="right-action">
-    <select>
+    <select (change)="onFilterInvoices($event)">
       <option>Filter by status</option>
       <option value="pending">Pending</option>
       <option value="paid">Paid</option>
