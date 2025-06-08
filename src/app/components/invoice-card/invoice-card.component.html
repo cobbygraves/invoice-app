@@ -1,0 +1,79 @@
+<div class="mobile-card" (click)="showDetails(invoice.id)">
+  <div class="id-name">
+    <div class="invoice-number">
+      <span>#</span><span>{{ invoice.id }}</span>
+    </div>
+    <div class="name">{{ invoice.clientName }}</div>
+  </div>
+  <div class="due-date-container">
+    <div class="due-date-amount">
+      <div class="due-date">Due {{ invoice.paymentDue }}</div>
+      <div class="amount">&#163;{{ invoice.total }}</div>
+    </div>
+    @if(invoice.status==='paid'){
+    <div class="paid-status-indicator">
+      <div class="paid-circle"></div>
+      <div class="status paid">Paid</div>
+    </div>
+
+    } @else if (invoice.status==='pending') {
+    <div class="pending-status-indicator">
+      <div class="pending-circle"></div>
+      <div class="status pending">Pending</div>
+    </div>
+
+    } @else {
+    <div class="draft-status-indicator">
+      <div class="draft-circle"></div>
+      <div class="status draft">Draft</div>
+    </div>
+
+    }
+  </div>
+</div>
+
+<!-- Desktop View -->
+
+<div class="desktop-card" (click)="showDetails(invoice.id)">
+  <div class="id-name">
+    <div class="invoice-number">
+      <span>#</span><span>{{ invoice.id }}</span>
+    </div>
+    <!-- <div class="name">{{ invoice.clientName }}</div> -->
+  </div>
+  <div class="due-date-container">
+    <div class="due-date">Due {{ invoice.paymentDue }}</div>
+    <div class="name">{{ invoice.clientName }}</div>
+    <div class="amount">&#163;{{ invoice.total }}</div>
+
+    @if(invoice.status==='paid'){
+    <div class="paid-status-indicator">
+      <div class="paid-circle"></div>
+      <div class="status paid">Paid</div>
+    </div>
+
+    } @else if (invoice.status==='pending') {
+    <div class="pending-status-indicator">
+      <div class="pending-circle"></div>
+      <div class="status pending">Pending</div>
+    </div>
+
+    } @else {
+    <div class="draft-status-indicator">
+      <div class="draft-circle"></div>
+      <div class="status draft">Draft</div>
+    </div>
+
+    }
+
+    <svg
+      width="7"
+      height="10"
+      viewBox="0 0 7 10"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M1 1L5 5L1 9" stroke="#7C5DFA" stroke-width="2" />
+    </svg>
+  </div>
+</div>

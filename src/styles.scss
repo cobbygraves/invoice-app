@@ -15,7 +15,6 @@
 // $secondary-red: #ff9797;
 @use "./styles/_mixin_default" as root;
 
-
 @font-face {
   font-family: "SpartanBold";
   src: url("assets/fonts/Spartan-Bold.ttf") format("truetype");
@@ -36,7 +35,7 @@ h6 {
   font-optical-sizing: auto;
 }
 
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;

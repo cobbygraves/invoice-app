@@ -4,12 +4,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
   padding: 0 10px;
-
 }
 
 .left-action {
   p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     font-size: x-small;
     color: root.$secondary-gray;
   }
@@ -26,7 +29,7 @@
     border: none;
     font-size: x-small;
     font-weight: 600;
-    padding-right: 10px; // Reduce this value to bring text closer to the icon
+    padding-right: 25px; // Reduce this value to bring text closer to the icon
     appearance: none; // Removes default arrow for custom styling
     background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
@@ -38,7 +41,7 @@
     }
   }
 
-  button {
+  a.mobile-new {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,6 +51,7 @@
     width: 75px;
     padding: 5px;
     border-radius: 20px;
+    text-decoration: none;
     background-color: root.$primary-violet;
 
     img {
@@ -58,6 +62,37 @@
     span {
       font-size: x-small;
       color: white;
+    }
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  a.desktop-new {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 7px;
+    border: none;
+    width: 75px;
+    padding: 5px;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: root.$primary-violet;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    span {
+      font-size: x-small;
+      color: white;
+    }
+    @media (min-width: 1024px) {
+      display: flex;
     }
   }
 }

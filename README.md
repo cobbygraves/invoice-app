@@ -1,59 +1,64 @@
-# Invoice
+# Invoice Management App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+## Project Description
 
-## Development server
+This project is an Invoice Management application built with Angular. It allows users to view, create, edit, and delete invoices, as well as filter them by status. The app features a responsive design, dark/light theme toggle, and modular component structure for maintainability.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Setup & Run Instructions
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. **Clone the repository:**
 
-## Code scaffolding
+   git clone https://github.com/cobbygraves/invoice-app
+   cd invoice
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. **Install dependencies:**
 
-```bash
-ng generate component component-name
-```
+   npm install
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. **Run the development server:**
 
-```bash
-ng generate --help
-```
+   npm start
 
-## Building
+   The app will be available at `http://localhost:4200`.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## Application Features
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- View a list of all invoices
+- Filter invoices by status (Paid, Pending, Draft)
+- Create new invoices using a modal form
+- Edit and delete existing invoices
+- Responsive layout for desktop and mobile
+- Light and dark theme toggle
+- Form validation and user feedback
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Component Structure
 
-```bash
-ng test
-```
+- **AppComponent**: Root component, includes header, sidebar, and main content area.
+- **HeaderComponent**: Displays the app header and theme toggle.
+- **SidebarComponent**: Navigation sidebar.
+- **ActionsComponent**: Invoice actions (filter, add new).
+- **InvoiceListComponent**: Displays the list of invoices.
+- **InvoiceDetailsComponent**: Shows details for a single invoice.
+- **EditInvoiceComponent**: Modal form for creating/editing invoices.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Routing Overview
 
-```bash
-ng e2e
-```
+- `/` — Home page, shows invoice list
+- `/invoices/new` — Create a new invoice
+- `/invoice/:id` — View details for a specific invoice
+- `/invoice/:id/edit` — Edit a specific invoice
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Form Implementation
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Reactive Forms are used for invoice creation and editing.
+- Form validation ensures required fields are filled and data is correctly formatted.
+- Dynamic form arrays are used for invoice items.
+- Modal dialogs are used for form presentation and confirmation actions.

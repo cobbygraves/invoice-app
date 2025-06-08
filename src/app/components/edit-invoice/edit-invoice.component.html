@@ -1,0 +1,163 @@
+<div class="main">
+  <a (click)="goBack()">
+    <svg
+      width="6"
+      height="11"
+      viewBox="0 0 6 11"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.3418 0.885742L0.113895 5.11364L4.3418 9.34155"
+        stroke="#7C5DFA"
+        stroke-width="2"
+      />
+    </svg>
+    <span>Go back</span>
+  </a>
+
+  <div class="edit-cta">
+    <span>Edit</span>
+    <div><span class="hash">#</span>{{ invoiceId }}</div>
+  </div>
+
+  <p class="sub-title">Bill From</p>
+  <form [formGroup]="editForm">
+    <div class="control-group">
+      <label>Street Address</label>
+      <input
+        type="text"
+        name="street-address"
+        formControlName="streetAddress"
+      />
+    </div>
+
+    <div class="city-postal-container">
+      <div class="control-group">
+        <label>City</label>
+        <input type="text" formControlName="city" />
+      </div>
+
+      <div class="control-group">
+        <label>Post Code</label>
+        <input type="text" name="post-code" formControlName="postCode" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label>Country</label>
+      <input type="text" name="country" formControlName="country" />
+    </div>
+    <p class="sub-title">Bill To</p>
+    <div class="control-group">
+      <label>Client's Name</label>
+      <input type="text" name="client-name" formControlName="clientName" />
+    </div>
+    <div class="control-group">
+      <label>Client's Email</label>
+      <input type="text" name="client-email" formControlName="clientEmail" />
+    </div>
+    <div class="control-group">
+      <label>Street Address</label>
+      <input
+        type="text"
+        name="client-street-address"
+        formControlName="clientStreetAddress"
+      />
+    </div>
+
+    <div class="city-postal-container">
+      <div class="control-group">
+        <label>City</label>
+        <input type="text" name="client-city" formControlName="clientCity" />
+      </div>
+
+      <div class="control-group">
+        <label>Post Code</label>
+        <input
+          type="text"
+          name="client-post-code"
+          formControlName="clientPostCode"
+        />
+      </div>
+    </div>
+    <div class="control-group">
+      <label>Country</label>
+      <input
+        type="text"
+        name="client-country"
+        formControlName="clientCountry"
+      />
+    </div>
+    <div class="control-group">
+      <label>Invoice Date</label>
+      <input type="date" name="invoice-date" formControlName="invoiceDate" />
+    </div>
+    <!-- payment terms goes here -->
+    <div class="control-group">
+      <label>Payment Terms</label>
+      <select formControlName="paymentTerms">
+        <option value="net-1-day">Net 1 Day</option>
+        <option value="net-7-days">Net 7 Days</option>
+        <option value="net-14-days">Net 14 Days</option>
+        <option value="net-30-days">Net 30 Days</option>
+      </select>
+    </div>
+    <!-- payment terms goes here -->
+    <div class="control-group">
+      <label>Project Description</label>
+      <input
+        type="description"
+        name="invoice-description"
+        formControlName="invoiceDescription"
+      />
+    </div>
+
+    <div class="control-group" formArrayName="listItems">
+      <label class="list-items-title">Item List</label>
+
+      <div class="item" *ngFor="let item of listItems.controls; let i = index">
+        <div [formGroupName]="i">
+          <div class="control-group">
+            <label>Item Name</label>
+            <input type="text" formControlName="name" />
+          </div>
+          <div class="control-container">
+            <div class="control-group">
+              <label>Qty.</label>
+              <input type="text" formControlName="quantity" />
+            </div>
+            <div class="control-group">
+              <label>Price</label>
+              <input type="text" formControlName="price" />
+            </div>
+            <div class="item-total">
+              <label>Total</label>
+              <p type="button" class="item-total">
+                {{
+                  item.get("quantity")?.value * item.get("price")?.value
+                    | currency
+                }}
+              </p>
+            </div>
+
+            <img
+              class="delete-item"
+              src="trash.png"
+              alt="delete item"
+              (click)="removeItem(i)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="add-item" (click)="addItem()">
+      + Add New Item
+    </button>
+  </form>
+</div>
+
+<div class="button-group">
+  <button type="button" class="cancel" (click)="goBack()">Cancel</button>
+  <button type="submit" class="save" (click)="onSubmit()">Save Changes</button>
+</div>

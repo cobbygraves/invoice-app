@@ -1,15 +1,23 @@
 <section class="action-container">
   <div class="left-action">
     <h4>Invoices</h4>
-    <p>7 invoices</p>
+    <p>
+      <span>{{ numberOfInvoices }}</span
+      ><span>invoices</span>
+    </p>
   </div>
   <div class="right-action">
-    <select>
-      <option>Filter</option>
+    <select (change)="onFilterInvoices($event)">
+      <option>Filter by status</option>
       <option value="pending">Pending</option>
       <option value="paid">Paid</option>
       <option value="draft">Draft</option>
     </select>
-    <button><img src="add-invoice.png"/><span>New</span></button>
+    <a [routerLink]="['invoices/', 'new']" class="mobile-new"
+      ><img src="add-invoice.png" /><span>New</span></a
+    >
+    <a class="desktop-new" (click)="onDesktopNewClick()"
+      ><img src="add-invoice.png" /><span>New</span></a
+    >
   </div>
 </section>

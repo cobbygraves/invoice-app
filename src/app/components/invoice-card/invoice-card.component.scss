@@ -1,0 +1,281 @@
+@use "../../../styles/_mixin_default" as root;
+
+.mobile-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+  cursor: pointer;
+
+  .id-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .invoice-number {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .invoice-number::first-letter {
+    color: root.$tertiary-gray;
+  }
+
+  .name {
+    font-size: 14px;
+    color: root.$secondary-gray;
+  }
+
+  .due-date-container {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .due-date {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-top: 10px;
+  }
+
+  .amount {
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .status-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .status {
+    &.paid {
+      color: #00c853;
+      font-weight: 600;
+    }
+
+    &.pending {
+      color: #f8a63b;
+      font-weight: 600;
+    }
+
+    &.draft {
+      background-color: root.$tertiary-gray;
+      color: root.$secondary-black;
+      font-weight: 600;
+    }
+  }
+
+  .paid-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #e0ffe0;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    min-width: 75px;
+
+    .paid-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #00c853;
+    }
+  }
+
+  .pending-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #fff8ed;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    min-width: 75px;
+
+    .pending-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #f8a63b;
+    }
+  }
+
+  .draft-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: root.$tertiary-gray;
+    font-size: 12px;
+    color: root.$secondary-black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    min-width: 75px;
+
+    .draft-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: root.$secondary-black;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.desktop-card {
+  background-color: white;
+  border-radius: 10px;
+  justify-content: space-between;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: none;
+
+  .id-name {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .invoice-number {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .invoice-number::first-letter {
+    color: root.$tertiary-gray;
+  }
+
+  .name {
+    font-size: 14px;
+    color: root.$secondary-gray;
+  }
+
+  .due-date-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .due-date {
+    font-size: 14px;
+    color: #a0a0a0;
+  }
+
+  .amount {
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+  }
+  .status-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .status {
+    &.paid {
+      color: #00c853;
+      font-weight: 600;
+    }
+
+    &.pending {
+      color: #f8a63b;
+      font-weight: 600;
+    }
+
+    &.draft {
+      background-color: root.$tertiary-gray;
+      color: root.$secondary-black;
+      font-weight: 600;
+    }
+  }
+
+  .paid-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #e0ffe0;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+
+    min-width: 75px;
+
+    .paid-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #00c853;
+    }
+  }
+
+  .pending-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #fff8ed;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+
+    min-width: 75px;
+
+    .pending-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #f8a63b;
+    }
+  }
+
+  .draft-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: root.$tertiary-gray;
+    font-size: 12px;
+    color: root.$secondary-black;
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 75px;
+
+    .draft-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: root.$secondary-black;
+    }
+  }
+
+  svg {
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+}

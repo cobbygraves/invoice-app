@@ -1,6 +1,5 @@
-export interface Invoice{
-
-    id: string;
+export interface Invoice {
+   id: string;
     "createdAt": string,
     "paymentDue": string,
     "description": string,
@@ -30,4 +29,3 @@ export interface Invoice{
     ],
     "total": number
   }
-

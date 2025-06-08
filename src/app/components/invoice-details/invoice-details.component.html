@@ -1,0 +1,332 @@
+<div class="main">
+  <a (click)="goBack()">
+    <svg
+      width="6"
+      height="11"
+      viewBox="0 0 6 11"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.3418 0.885742L0.113895 5.11364L4.3418 9.34155"
+        stroke="#7C5DFA"
+        stroke-width="2"
+      />
+    </svg>
+    <span>Go back</span>
+  </a>
+  <div class="status-bar">
+    <div class="status-bar-left">
+      <p class="status-text">Status</p>
+      @if(invoice.status==='paid'){
+      <div class="paid-status-indicator">
+        <div class="paid-circle"></div>
+        <div class="status paid">Paid</div>
+      </div>
+
+      } @else if (invoice.status==='pending') {
+      <div class="pending-status-indicator">
+        <div class="pending-circle"></div>
+        <div class="status pending">Pending</div>
+      </div>
+
+      } @else {
+      <div class="draft-status-indicator">
+        <div class="draft-circle"></div>
+        <div class="status draft">Draft</div>
+      </div>
+
+      }
+    </div>
+
+    <div class="invoice-header-actions">
+      <a (click)="handleShowEdit()" class="edit">Edit</a>
+      <button class="delete" (click)="showDeleteModal = true">Delete</button>
+      <button class="mark-as-paid">Mark as Paid</button>
+    </div>
+  </div>
+
+  <div class="invoice-container">
+    <div class="invoice-type-location">
+      <header class="invoice-type">
+        <h5>
+          <span>#</span><span>{{ invoice.id }}</span>
+        </h5>
+        <p>{{ invoice.description }}</p>
+      </header>
+
+      <div class="invoice-location">
+        {{ invoice.senderAddress.street }}<br />
+        {{ invoice.senderAddress.city }}<br />
+        {{ invoice.senderAddress.postCode }}<br />
+        {{ invoice.senderAddress.country }}
+      </div>
+    </div>
+
+    <div class="bill-info">
+      <div class="date-bill-container">
+        <div class="date-container">
+          <p>Invoice Date</p>
+          <p class="invoice-date">{{ invoice.createdAt }}</p>
+
+          <div class="payment-container">
+            <p>Payment Date</p>
+            <p class="invoice-date">{{ invoice.paymentDue }}</p>
+          </div>
+        </div>
+        <div class="bill-container">
+          <p>Bill To</p>
+          <p class="invoice-date">{{ invoice.clientName }}</p>
+          <div class="bill-address">
+            {{ invoice.clientAddress.street }}<br />
+            {{ invoice.clientAddress.city }}<br />
+            {{ invoice.clientAddress.postCode }}<br />
+            {{ invoice.clientAddress.country }}
+          </div>
+        </div>
+      </div>
+      <div class="email-container">
+        <p>Sent to</p>
+        <div>{{ invoice.clientEmail }}</div>
+      </div>
+    </div>
+    <div class="price-breakdown-container">
+      @for (item of invoice.items; track $index) {
+      <div class="top">
+        <div class="item-price">
+          <p>{{ item.name }}</p>
+          <div>{{ item.quantity }}x&#163;{{ item.price }}</div>
+        </div>
+        <p class="price">&#163;{{ item.quantity * item.price }}</p>
+      </div>
+      }
+    </div>
+    <!-- Desktop View -->
+    <div class="desktop-price-breakdown-container">
+      <table>
+        <thead>
+          <tr>
+            <td>Item Name</td>
+            <td>Qty</td>
+            <td>Price</td>
+            <td>Total</td>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of invoice.items; track $index) {
+          <tr>
+            <td>
+              <p class="item-name-total">{{ item.name }}</p>
+            </td>
+            <td>
+              <p>{{ item.quantity }}</p>
+            </td>
+            <td>
+              <p>{{ item.price }}</p>
+            </td>
+            <td>
+              <p class="price item-name-total">
+                &#163;{{ item.quantity * item.price }}
+              </p>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="total">
+      <p>Grand Total</p>
+      <p>&#163;{{ invoice.total }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="invoice-footer">
+  <a [routerLink]="['/invoices/', invoice.id, 'edit']" class="edit">Edit</a>
+  <button class="delete" (click)="showDeleteModal = true">Delete</button>
+  <button class="mark-as-paid">Mark as Paid</button>
+</div>
+
+<!-- Modal Overlay -->
+@if (showDeleteModal) {
+<div class="modal-overlay">
+  <div class="modal">
+    <h2>Confirm Deletion</h2>
+    <small>
+      Are you sure you want to delete invoice #{{ invoice.id }}? This action
+      cannot be undone.
+    </small>
+    <div class="modal-actions">
+      <button class="cancel" (click)="showDeleteModal = false">Cancel</button>
+      <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
+    </div>
+  </div>
+</div>
+} @if (showEditModal) {
+<div class="edit-modal-overlay">
+  <div class="edit-modal">
+    <h2>
+      Edit <span class="hash">#</span><span>{{ invoice.id }}</span>
+    </h2>
+
+    <div class="bill-modal-content">
+      <p class="sub-title">Bill From</p>
+      <form [formGroup]="editForm">
+        <div class="control-group">
+          <label>Street Address</label>
+          <input
+            type="text"
+            name="street-address"
+            formControlName="streetAddress"
+          />
+        </div>
+
+        <div class="city-postal-container">
+          <div class="control-group">
+            <label>City</label>
+            <input type="text" formControlName="city" />
+          </div>
+
+          <div class="control-group">
+            <label>Post Code</label>
+            <input type="text" name="post-code" formControlName="postCode" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Country</label>
+          <input type="text" name="country" formControlName="country" />
+        </div>
+        <p class="sub-title">Bill To</p>
+        <div class="control-group">
+          <label>Client's Name</label>
+          <input type="text" name="client-name" formControlName="clientName" />
+        </div>
+        <div class="control-group">
+          <label>Client's Email</label>
+          <input
+            type="text"
+            name="client-email"
+            formControlName="clientEmail"
+          />
+        </div>
+        <div class="control-group">
+          <label>Street Address</label>
+          <input
+            type="text"
+            name="client-street-address"
+            formControlName="clientStreetAddress"
+          />
+        </div>
+
+        <div class="city-postal-container">
+          <div class="control-group">
+            <label>City</label>
+            <input
+              type="text"
+              name="client-city"
+              formControlName="clientCity"
+            />
+          </div>
+
+          <div class="control-group">
+            <label>Post Code</label>
+            <input
+              type="text"
+              name="client-post-code"
+              formControlName="clientPostCode"
+            />
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Country</label>
+          <input
+            type="text"
+            name="client-country"
+            formControlName="clientCountry"
+          />
+        </div>
+        <div class="control-group">
+          <label>Invoice Date</label>
+          <input
+            type="date"
+            name="invoice-date"
+            formControlName="invoiceDate"
+          />
+        </div>
+        <!-- payment terms goes here -->
+        <div class="control-group">
+          <label>Payment Terms</label>
+          <select formControlName="paymentTerms">
+            <option value="net-1-day">Net 1 Day</option>
+            <option value="net-7-days">Net 7 Days</option>
+            <option value="net-14-days">Net 14 Days</option>
+            <option value="net-30-days">Net 30 Days</option>
+          </select>
+        </div>
+        <!-- payment terms goes here -->
+        <div class="control-group">
+          <label>Project Description</label>
+          <input
+            type="description"
+            name="invoice-description"
+            formControlName="invoiceDescription"
+          />
+        </div>
+
+        <div class="control-group" formArrayName="listItems">
+          <label class="list-items-title">Item List</label>
+
+          <div
+            class="item"
+            *ngFor="let item of listItems.controls; let i = index"
+          >
+            <div [formGroupName]="i">
+              <div class="control-group">
+                <label>Item Name</label>
+                <input type="text" formControlName="name" />
+              </div>
+              <div class="control-container">
+                <div class="control-group">
+                  <label>Qty.</label>
+                  <input type="text" formControlName="quantity" />
+                </div>
+                <div class="control-group">
+                  <label>Price</label>
+                  <input type="text" formControlName="price" />
+                </div>
+                <div class="item-total">
+                  <label>Total</label>
+                  <p type="button" class="item-total">
+                    {{
+                      item.get("quantity")?.value * item.get("price")?.value
+                        | currency
+                    }}
+                  </p>
+                </div>
+
+                <img
+                  class="delete-item"
+                  src="trash.png"
+                  alt="delete item"
+                  (click)="removeItem(i)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="add-item" (click)="addItem()">
+          + Add New Item
+        </button>
+      </form>
+    </div>
+    <!-- <button (click)="handleShowEdit()">Close</button> -->
+    <div class="button-group">
+      <button type="button" class="cancel" (click)="goBack()">Cancel</button>
+      <button type="submit" class="save" (click)="onSubmit()">
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>
+}
