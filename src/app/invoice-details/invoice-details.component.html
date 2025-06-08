@@ -16,69 +16,80 @@
     <span>Go back</span>
   </a>
   <div class="status-bar">
-    <p class="status-text">Status</p>
-    @if(invoice.status==='paid'){
-    <div class="paid-status-indicator">
-      <div class="paid-circle"></div>
-      <div class="status paid">Paid</div>
+    <div class="status-bar-left">
+      <p class="status-text">Status</p>
+      @if(invoice.status==='paid'){
+      <div class="paid-status-indicator">
+        <div class="paid-circle"></div>
+        <div class="status paid">Paid</div>
+      </div>
+
+      } @else if (invoice.status==='pending') {
+      <div class="pending-status-indicator">
+        <div class="pending-circle"></div>
+        <div class="status pending">Pending</div>
+      </div>
+
+      } @else {
+      <div class="draft-status-indicator">
+        <div class="draft-circle"></div>
+        <div class="status draft">Draft</div>
+      </div>
+
+      }
     </div>
 
-    } @else if (invoice.status==='pending') {
-    <div class="pending-status-indicator">
-      <div class="pending-circle"></div>
-      <div class="status pending">Pending</div>
+    <div class="invoice-header-actions">
+      <a [routerLink]="['/invoice/', invoice.id, 'edit']" class="edit">Edit</a>
+      <button class="delete" (click)="showDeleteModal = true">Delete</button>
+      <button class="mark-as-paid">Mark as Paid</button>
     </div>
-
-    } @else {
-    <div class="draft-status-indicator">
-      <div class="draft-circle"></div>
-      <div class="status draft">Draft</div>
-    </div>
-
-    }
   </div>
 
   <div class="invoice-container">
-    <header class="invoice-type">
-      <h5>
-        <span>#</span><span>{{ invoice.id }}</span>
-      </h5>
-      <p>{{ invoice.description }}</p>
-    </header>
+    <div class="invoice-type-location">
+      <header class="invoice-type">
+        <h5>
+          <span>#</span><span>{{ invoice.id }}</span>
+        </h5>
+        <p>{{ invoice.description }}</p>
+      </header>
 
-    <div class="invoice-location">
-      {{ invoice.senderAddress.street }}<br />
-      {{ invoice.senderAddress.city }}<br />
-      {{ invoice.senderAddress.postCode }}<br />
-      {{ invoice.senderAddress.country }}
-    </div>
-
-    <div class="date-bill-container">
-      <div class="date-container">
-        <p>Invoice Date</p>
-        <p class="invoice-date">{{ invoice.createdAt }}</p>
-
-        <div class="payment-container">
-          <p>Payment Date</p>
-          <p class="invoice-date">{{ invoice.paymentDue }}</p>
-        </div>
-      </div>
-      <div class="bill-container">
-        <p>Bill To</p>
-        <p class="invoice-date">{{ invoice.clientName }}</p>
-        <div class="bill-address">
-          {{ invoice.clientAddress.street }}<br />
-          {{ invoice.clientAddress.city }}<br />
-          {{ invoice.clientAddress.postCode }}<br />
-          {{ invoice.clientAddress.country }}
-        </div>
+      <div class="invoice-location">
+        {{ invoice.senderAddress.street }}<br />
+        {{ invoice.senderAddress.city }}<br />
+        {{ invoice.senderAddress.postCode }}<br />
+        {{ invoice.senderAddress.country }}
       </div>
     </div>
-    <div class="email-container">
-      <p>Sent to</p>
-      <div>{{ invoice.clientEmail }}</div>
-    </div>
 
+    <div class="bill-info">
+      <div class="date-bill-container">
+        <div class="date-container">
+          <p>Invoice Date</p>
+          <p class="invoice-date">{{ invoice.createdAt }}</p>
+
+          <div class="payment-container">
+            <p>Payment Date</p>
+            <p class="invoice-date">{{ invoice.paymentDue }}</p>
+          </div>
+        </div>
+        <div class="bill-container">
+          <p>Bill To</p>
+          <p class="invoice-date">{{ invoice.clientName }}</p>
+          <div class="bill-address">
+            {{ invoice.clientAddress.street }}<br />
+            {{ invoice.clientAddress.city }}<br />
+            {{ invoice.clientAddress.postCode }}<br />
+            {{ invoice.clientAddress.country }}
+          </div>
+        </div>
+      </div>
+      <div class="email-container">
+        <p>Sent to</p>
+        <div>{{ invoice.clientEmail }}</div>
+      </div>
+    </div>
     <div class="price-breakdown-container">
       @for (item of invoice.items; track $index) {
       <div class="top">
@@ -89,11 +100,43 @@
         <p class="price">&#163;{{ item.quantity * item.price }}</p>
       </div>
       }
-
-      <div class="total">
-        <p>Grand Total</p>
-        <p>&#163;{{ invoice.total }}</p>
-      </div>
+    </div>
+    <!-- Desktop View -->
+    <div class="desktop-price-breakdown-container">
+      <table>
+        <thead>
+          <tr>
+            <td>Item Name</td>
+            <td>Qty</td>
+            <td>Price</td>
+            <td>Total</td>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of invoice.items; track $index) {
+          <tr>
+            <td>
+              <p class="item-name-total">{{ item.name }}</p>
+            </td>
+            <td>
+              <p>{{ item.quantity }}</p>
+            </td>
+            <td>
+              <p>{{ item.price }}</p>
+            </td>
+            <td>
+              <p class="price item-name-total">
+                &#163;{{ item.quantity * item.price }}
+              </p>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="total">
+      <p>Grand Total</p>
+      <p>&#163;{{ invoice.total }}</p>
     </div>
   </div>
 </div>
@@ -103,7 +146,6 @@
   <button class="mark-as-paid">Mark as Paid</button>
 </div> -->
 
-<!-- ...existing code... -->
 <div class="invoice-footer">
   <a [routerLink]="['/invoice/', invoice.id, 'edit']" class="edit">Edit</a>
   <button class="delete" (click)="showDeleteModal = true">Delete</button>
