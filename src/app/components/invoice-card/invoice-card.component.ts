@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Invoice } from '../models/invoice';
+import { Invoice } from '../../models/invoice';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,6 +15,6 @@ export class InvoiceCardComponent {
   constructor(private router: Router) {}
 
   showDetails(id: string) {
-    this.router.navigate(['/invoice', this.invoice.id]);
+    this.router.navigate(['/invoices', this.invoice.id]);
   }
 }

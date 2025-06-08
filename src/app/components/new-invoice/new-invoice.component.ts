@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import Invoices from '../../assets/data.json';
-import { InvoiceCardComponent } from '../invoice-card/invoice-card.component';
-import { ActionsComponent } from '../actions/actions.component';
-import { NoInvoiceComponent } from '../no-invoice/no-invoice.component';
-import moment from 'moment';
-import { Invoice } from '../models/invoice';
 import { CommonModule, Location } from '@angular/common';
-import { InvoiceIdGeneratorService } from '../services/invoice-id-generator.service';
+import { ActivatedRoute } from '@angular/router';
+import { Invoice } from '../../models/invoice';
+import InvoicesData from '../../../assets/data.json';
+const Invoices: Invoice[] = InvoicesData as Invoice[];
+import moment from 'moment';
 
 import {
   FormArray,
@@ -14,33 +12,29 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { InvoiceIdGeneratorService } from '../../services/invoice-id-generator.service';
 
 @Component({
-  selector: 'app-home',
-  imports: [
-    ActionsComponent,
-    NoInvoiceComponent,
-    InvoiceCardComponent,
-    ReactiveFormsModule,
-    CommonModule,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  selector: 'app-new-invoice',
+  imports: [ReactiveFormsModule, CommonModule],
+  templateUrl: './new-invoice.component.html',
+  styleUrl: './new-invoice.component.scss',
 })
-export class HomeComponent {
-  title = 'invoice';
-  showNewInvoiceModal = false;
-  editForm!: FormGroup;
-
-  invoices: Invoice[] = Invoices.map((item: Invoice) => ({
-    ...item,
-    paymentDue: moment(item.paymentDue).format('D MMM YYYY'),
-  }));
-
+export class NewInvoiceComponent {
   constructor(
+    private location: Location,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private router: Router,
     private invoiceId: InvoiceIdGeneratorService
   ) {}
+
+  editForm!: FormGroup;
+
+  goBack() {
+    this.location.back();
+  }
 
   ngOnInit() {
     this.editForm = this.formBuilder.group({
@@ -61,16 +55,6 @@ export class HomeComponent {
       invoiceDescription: [''],
       listItems: this.formBuilder.array([]),
     });
-  }
-
-  handleDesktopNew() {
-    this.showNewInvoiceModal = true;
-  }
-
-  closeNewInvoiceModal() {
-    this.showNewInvoiceModal = false;
-    this.editForm.reset();
-    this.listItems.clear();
   }
 
   get listItems(): FormArray {
@@ -130,7 +114,8 @@ export class HomeComponent {
 
     // Add as new invoice
     Invoices.push(editedData);
-    this.closeNewInvoiceModal();
+
+    this.router.navigate(['/']);
   }
 
   onDraft() {
@@ -169,5 +154,7 @@ export class HomeComponent {
 
     // Add as new invoice
     Invoices.push(editedData);
+
+    this.router.navigate(['/']);
   }
 }

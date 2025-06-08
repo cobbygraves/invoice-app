@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Invoice } from '../models/invoice';
-import InvoicesData from '../../assets/data.json';
+import { Invoice } from '../../models/invoice';
+import InvoicesData from '../../../assets/data.json';
 const Invoices: Invoice[] = InvoicesData as Invoice[];
 import { RouterModule, Router } from '@angular/router';
 import {
