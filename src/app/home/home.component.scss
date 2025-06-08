@@ -236,6 +236,16 @@
       border: none;
     }
 
+    .draft {
+      color: root.$secondary-gray;
+      background-color: root.$secondary-black;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
     .save {
       background-color: root.$primary-violet;
       color: white;
