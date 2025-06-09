@@ -553,6 +553,8 @@ a {
 
     .city-postal-container {
       width: 100%;
+      overflow-x: hidden;
+      padding-right: 10px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5px;
