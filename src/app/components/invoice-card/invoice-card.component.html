@@ -8,7 +8,7 @@
   <div class="due-date-container">
     <div class="due-date-amount">
       <div class="due-date">Due {{ invoice.paymentDue }}</div>
-      <div class="amount">&#163;{{ invoice.total }}</div>
+      <div class="amount">{{ invoice.total | currency : "GBP" }}</div>
     </div>
     @if(invoice.status==='paid'){
     <div class="paid-status-indicator">
@@ -44,7 +44,7 @@
   <div class="due-date-container">
     <div class="due-date">Due {{ invoice.paymentDue }}</div>
     <div class="name">{{ invoice.clientName }}</div>
-    <div class="amount">&#163;{{ invoice.total }}</div>
+    <div class="amount">{{ invoice.total | currency : "GBP" }}</div>
 
     @if(invoice.status==='paid'){
     <div class="paid-status-indicator">

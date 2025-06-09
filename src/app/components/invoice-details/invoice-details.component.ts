@@ -12,6 +12,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { InvoiceManagementService } from '../../services/invoice-management.service';
 
 @Component({
   selector: 'app-invoice-details',
@@ -30,16 +31,13 @@ export class InvoiceDetailsComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private invoiceService: InvoiceManagementService
   ) {}
 
   deleteInvoice(id: string) {
-    // Your delete logic here
-    const index = Invoices.findIndex((invoice) => invoice.id === id);
-    if (index !== -1) {
-      Invoices.splice(index, 1);
-      this.goBack();
-    }
+    this.invoiceService.deleteInvoice(id);
+    this.goBack();
     this.showDeleteModal = false;
   }
 
@@ -133,20 +131,7 @@ export class InvoiceDetailsComponent implements OnInit {
         0
       ),
     };
-    // console.log(editedDAta);
-    // Find the index of the invoice to update
-    const index = Invoices.findIndex(
-      (inv: Invoice) => inv?.id === editedData.id
-    );
-
-    if (index !== -1) {
-      // Update existing invoice
-      Invoices[index] = editedData;
-    } else {
-      // Add as edited invoice
-      Invoices.push(editedData);
-    }
+    this.invoiceService.updateInvoice(editedData);
     this.router.navigate(['/']);
-    console.log(Invoices);
   }
 }

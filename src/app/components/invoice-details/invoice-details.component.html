@@ -299,7 +299,7 @@
                   <p type="button" class="item-total">
                     {{
                       item.get("quantity")?.value * item.get("price")?.value
-                        | currency
+                        | currency : "GBP"
                     }}
                   </p>
                 </div>

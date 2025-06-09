@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import Invoices from '../../../assets/data.json';
 import { InvoiceCardComponent } from '../invoice-card/invoice-card.component';
 import { ActionsComponent } from '../../actions/actions.component';
@@ -7,6 +7,7 @@ import moment from 'moment';
 import { Invoice } from '../../models/invoice';
 import { CommonModule } from '@angular/common';
 import { InvoiceIdGeneratorService } from '../../services/invoice-id-generator.service';
+import { InvoiceManagementService } from '../../services/invoice-management.service';
 
 import {
   FormArray,
@@ -28,21 +29,20 @@ import {
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  constructor(
+    private formBuilder: FormBuilder,
+    private invoiceId: InvoiceIdGeneratorService,
+    private invoiceService: InvoiceManagementService
+  ) {}
+
   title = 'invoice';
   showNewInvoiceModal = false;
   editForm!: FormGroup;
 
-  invoices: Invoice[] = Invoices.map((item: Invoice) => ({
-    ...item,
-    paymentDue: moment(item.paymentDue).format('D MMM YYYY'),
-  }));
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private invoiceId: InvoiceIdGeneratorService
-  ) {}
+  invoices: Invoice[] = [];
 
   ngOnInit() {
+    this.invoices = this.invoiceService.readInvoice();
     this.editForm = this.formBuilder.group({
       streetAddress: [''],
       createdAt: [''],
@@ -136,11 +136,7 @@ export class HomeComponent {
         0
       ),
     };
-
-    // console.log(editedData);
-
-    // Add as new invoice
-    Invoices.push(editedData);
+    this.invoiceService.addInvoice(editedData);
     this.closeNewInvoiceModal();
   }
 
@@ -175,10 +171,6 @@ export class HomeComponent {
         0
       ),
     };
-
-    // console.log(editedData);
-
-    // Add as new invoice
-    Invoices.push(editedData);
+    this.invoiceService.addInvoice(editedData);
   }
 }
