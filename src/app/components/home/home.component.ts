@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import Invoices from '../../../assets/data.json';
+import Invoices from '../../../../public/data.json';
 import { InvoiceCardComponent } from '../invoice-card/invoice-card.component';
 import { ActionsComponent } from '../../actions/actions.component';
 import { NoInvoiceComponent } from '../no-invoice/no-invoice.component';
@@ -42,7 +42,6 @@ export class HomeComponent {
   invoices: Invoice[] = [];
 
   ngOnInit() {
-    this.invoices = this.invoiceService.readInvoice();
     this.editForm = this.formBuilder.group({
       streetAddress: [''],
       createdAt: [''],
@@ -60,6 +59,9 @@ export class HomeComponent {
       paymentTerms: ['net-7-days'],
       invoiceDescription: [''],
       listItems: this.formBuilder.array([]),
+    });
+    this.invoiceService.readInvoice().subscribe((invoices: Invoice[]) => {
+      this.invoices = invoices;
     });
   }
 
@@ -171,6 +173,9 @@ export class HomeComponent {
         0
       ),
     };
+
     this.invoiceService.addInvoice(editedData);
+    this.closeNewInvoiceModal();
+    console.log(editedData);
   }
 }

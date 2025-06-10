@@ -3,7 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../../models/invoice';
-import InvoicesData from '../../../assets/data.json';
+import InvoicesData from '../../../../public/data.json';
 const Invoices: Invoice[] = InvoicesData as Invoice[];
 import {
   FormArray,

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import Invoices from '../../assets/data.json';
+import Invoices from '../../../public/data.json';
 
 @Component({
   selector: 'app-actions',
